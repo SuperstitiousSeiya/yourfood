@@ -23,7 +23,7 @@ export default function Component() {
       <div className="flex items-center gap-4 w-full justify-between sm:w-auto">
         <Link className="flex items-center gap-2" href="/">
           <BeefIcon className="w-6 h-6 text-orange-500" />
-          <span className="text-lg font-bold">Foodie</span>
+          <span className="text-lg font-bold">Ivy cutie</span>
         </Link>
         <Sheet>
           <SheetTrigger asChild>
