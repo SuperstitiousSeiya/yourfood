@@ -61,10 +61,10 @@ export default function Component() {
             onChange={(e) => setquery(e.target.value)}
           />
         </form>
-        <Button className="hidden md:inline-flex" variant="outline">
+        {/* <Button className="hidden md:inline-flex" variant="outline">
           <UserIcon className="w-5 h-5 mr-2" />
           Sign In
-        </Button>
+        </Button> */}
       </div>
     </header>
   );
