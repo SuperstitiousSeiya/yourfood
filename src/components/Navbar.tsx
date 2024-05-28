@@ -4,6 +4,9 @@ import Link from "next/link";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { Button } from "./ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
+import { MenuIcon } from "lucide-react";
 
 export default function Component() {
   const router  = useRouter()
@@ -16,57 +19,52 @@ export default function Component() {
   }
 
   return (
-    <header className="flex items-center justify-between px-4 py-3 bg-white shadow-sm dark:bg-gray-950">
-      <div className="flex items-center gap-4">
+<header className="flex flex-col items-center justify-between px-4 py-3 bg-white shadow-sm dark:bg-gray-950 sm:flex-row">
+      <div className="flex items-center gap-4 w-full justify-between sm:w-auto">
         <Link className="flex items-center gap-2" href="/">
           <BeefIcon className="w-6 h-6 text-orange-500" />
           <span className="text-lg font-bold">Foodie</span>
         </Link>
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button className="md:hidden" size="icon" variant="ghost">
+              <MenuIcon className="w-6 h-6" />
+              <span className="sr-only">Toggle navigation menu</span>
+            </Button>
+          </SheetTrigger>
+          <SheetContent className="md:hidden" side="left">
+            <nav className="grid gap-4 py-6">
+              <Link
+                className="flex items-center gap-2 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
+                href="/categories"
+              >
+                Categories
+              </Link>
+
+            </nav>
+          </SheetContent>
+        </Sheet>
         <nav className="hidden md:flex items-center gap-6">
-          <Link
-            className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
-            href="/categories"
-          >
+          <Link className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50" href="/categories">
             Categories
           </Link>
-          <Link
-            className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
-            href="#"
-          >
-            Entrees
-          </Link>
-          <Link
-            className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
-            href="#"
-          >
-            Desserts
-          </Link>
-          <Link
-            className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
-            href="#"
-          >
-            Drinks
-          </Link>
+
         </nav>
       </div>
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-4 w-full justify-between sm:w-auto">
         <form className="relative w-full max-w-md" onSubmit={handleSubmit}>
           <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 dark:text-gray-400" />
           <Input
-            className="pl-10 pr-4 py-2 rounded-md bg-gray-100 focus:bg-white focus:ring-1 focus:ring-orange-500 dark:bg-gray-800 dark:text-gray-50 dark:focus:bg-gray-700"
+            className="pl-10 pr-4 py-2 rounded-md bg-gray-100 focus:bg-white focus:ring-1 focus:ring-orange-500 dark:bg-gray-800 dark:text-gray-50 dark:focus:bg-gray-700 w-full"
             placeholder="Search for dishes..."
             type="search"
-            value={query}
-            onChange={(e) => {
-              const event = e.target
-              setquery(event.value);
-            }}
+            onChange={(e) => setquery(e.target.value)}
           />
         </form>
-        {/* <Button className="hidden md:inline-flex" variant="outline">
+        <Button className="hidden md:inline-flex" variant="outline">
           <UserIcon className="w-5 h-5 mr-2" />
           Sign In
-        </Button> */}
+        </Button>
       </div>
     </header>
   );
